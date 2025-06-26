@@ -1,0 +1,178 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Scope One', serif;
+}
+/*Booking view page*/
+.booking-wrapper {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.booking-title {
+    text-align: center;
+    font-size: 2rem;
+    color: #000000;
+    margin-bottom: 30px;
+}
+
+.booking-card {
+    background-color: #fff;
+    border-left: 6px solid #738cbf;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease;
+}
+
+.booking-card:hover {
+    transform: translateY(-3px);
+}
+
+.booking-info {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.booking-info span {
+    font-weight: 600;
+    color: #000000;
+}
+
+.total {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #364267;
+}
+.total-summary {
+    border: 2px solid #738cbf;
+    border-radius: 9px;
+    padding: 8px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.total-summary .total {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+footer {
+    background-color: #f8f9fa;
+    padding: 15px;
+    text-align: center;
+    margin-top: auto; /* Push the footer to the bottom */
+}
+
+.content-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Шрифт для заголовків */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cormorant Infant', serif;
+    font-weight: 550;
+}
+
+/* Основний текст */
+body, p, li, td, th, input, button {
+    font-family: 'Brygada 1918', serif;
+}
+
+.custom-button {
+    background-color: transparent;
+    border: 1px solid black;
+    color: black;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+
+
+.b-del{
+    background-color: #F26444;
+}
+.b-upd{
+    background-color: #F2D338;
+}
+
+/* Custom Sidebar*/
+.custom-sidebar {
+    max-width: 450px;
+    min-width: 350px;
+    padding: 0;
+}
+
+.custom-sidebar .list-group-item {
+    font-weight: 500;
+    border: none;
+    border-left: 6px solid transparent;
+    transition: all 0.25s ease;
+    padding: 12px 16px;
+    font-family: 'Brygada 1918', serif;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.access-link {
+    background-color: rgba(122, 159, 191, 0.76);
+    color: #fff;
+}
+.roles-link {
+    background-color: rgba(242, 135, 5, 0.72);
+    color: #fff;
+}
+.login-link {
+    background-color: rgba(89, 108, 0, 0.69);
+    color: #fff;
+}
+.modules-link {
+    background-color: rgba(122, 159, 191, 0.76);
+    color: #fff;
+}
+
+/* Hover Effects*/
+.access-link:hover {
+    background-color: #7a9fbf;
+    border-left-color: #436786;
+}
+.roles-link:hover {
+    background-color: #f28705;
+    border-left-color: #b46213;
+}
+.login-link:hover {
+    background-color: #596c00;
+    border-left-color: #445201;
+}
+.modules-link:hover {
+    background-color: #7a9fbf;
+    border-left-color: #436786;
+}
+
+/* layout */
+.row.pt-3 {
+    display: flex;
+    justify-content: space-between;
+}
+
+.col-3 {
+    flex: 0 0 250px;
+}
+
+.col-9 {
+    flex: 1;
+    padding-left: 30px;
+}

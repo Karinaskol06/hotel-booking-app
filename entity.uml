@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>practice.hotel_system.entity</OriginalElement>
+  <nodes>
+    <node x="-816.1349859154931" y="1143.9646197183101">practice.hotel_system.entity.Apartments</node>
+    <node x="-814.5" y="443.0">practice.hotel_system.entity.Invoices</node>
+    <node x="-358.03397183098593" y="1258.9646197183101">practice.hotel_system.entity.ApartmentClasses</node>
+    <node x="-177.93295774647902" y="645.6003605633804">practice.hotel_system.entity.Clients</node>
+    <node x="-192.93295774647902" y="965.8874929577464">practice.hotel_system.entity.ApartmentHasBooking</node>
+    <node x="-1048.5307921126762" y="1001.2361712676053">practice.hotel_system.entity.BookingStatus</node>
+    <node x="-1060.3910084507042" y="454.5">practice.hotel_system.entity.Payments</node>
+    <node x="-45.047369014084666" y="477.50000000000006">practice.hotel_system.entity.Roles</node>
+    <node x="-734.4388597183098" y="768.1848360563378">practice.hotel_system.entity.Bookings</node>
+    <node x="-1080.0307921126762" y="1327.9646197183101">practice.hotel_system.entity.Images</node>
+    <node x="-290.10578028169016" y="454.5">practice.hotel_system.entity.Users</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="practice.hotel_system.entity.Roles" target="practice.hotel_system.entity.Users" relationship="TO_MANY">
+      <point x="0.0" y="50.0" />
+      <point x="45.952630985915334" y="396.0" />
+      <point x="-202.10578028169016" y="396.0" />
+      <point x="0.0" y="-61.5" />
+    </edge>
+    <edge source="practice.hotel_system.entity.Users" target="practice.hotel_system.entity.Roles" relationship="TO_MANY">
+      <point x="0.0" y="-61.5" />
+      <point x="-271.9763867042254" y="454.5" />
+      <point x="-271.9763867042254" y="365.0564110422535" />
+      <point x="95.61968856338012" y="365.0564110422535" />
+      <point x="95.61968856338012" y="492.7444761690141" />
+      <point x="103.19601938028143" y="492.7444761690141" />
+      <point x="103.19601938028143" y="527.125" />
+      <point x="45.952630985915334" y="527.125" />
+      <point x="0.0" y="50.0" />
+    </edge>
+    <edge source="practice.hotel_system.entity.ApartmentHasBooking" target="practice.hotel_system.entity.Apartments" relationship="TO_ONE">
+      <point x="0.0" y="-61.5" />
+      <point x="-80.43295774647902" y="1158.0380845070424" />
+      <point x="-626.1349859154931" y="1158.0380845070424" />
+      <point x="0.0" y="-142.0" />
+    </edge>
+    <edge source="practice.hotel_system.entity.Bookings" target="practice.hotel_system.entity.Payments" relationship="TO_ONE">
+      <point x="0.0" y="-119.0" />
+      <point x="-544.4388597183098" y="943.4211154929578" />
+      <point x="-724.1965070422535" y="943.4211154929578" />
+      <point x="-724.1965070422535" y="856.0" />
+      <point x="-1048.7798084507044" y="856.0" />
+      <point x="-1048.7798084507044" y="554.875" />
+      <point x="-955.3910084507042" y="554.875" />
+      <point x="0.0" y="-61.5" />
+    </edge>
+    <edge source="practice.hotel_system.entity.ApartmentHasBooking" target="practice.hotel_system.entity.Bookings" relationship="TO_ONE">
+      <point x="0.0" y="-61.5" />
+      <point x="-80.43295774647902" y="1064.2838704225353" />
+      <point x="-180.72726760563398" y="1064.2838704225353" />
+      <point x="-180.72726760563398" y="1001.8683267605634" />
+      <point x="-544.4388597183098" y="1001.8683267605634" />
+      <point x="0.0" y="-119.0" />
+    </edge>
+    <edge source="practice.hotel_system.entity.Apartments" target="practice.hotel_system.entity.ApartmentClasses" relationship="TO_ONE">
+      <point x="0.0" y="-142.0" />
+      <point x="-626.1349859154931" y="1510.1602253521128" />
+      <point x="-239.53397183098593" y="1510.1602253521128" />
+      <point x="0.0" y="84.5" />
+    </edge>
+    <edge source="practice.hotel_system.entity.Payments" target="practice.hotel_system.entity.Bookings" relationship="TO_MANY">
+      <point x="0.0" y="-61.5" />
+      <point x="-896.162947605634" y="454.5" />
+      <point x="-896.162947605634" y="949.2238371830986" />
+      <point x="-544.4388597183098" y="949.2238371830986" />
+      <point x="0.0" y="-119.0" />
+    </edge>
+    <edge source="practice.hotel_system.entity.Images" target="practice.hotel_system.entity.Apartments" relationship="TO_ONE">
+      <point x="0.0" y="50.0" />
+      <point x="-964.0307921126762" y="1285.9646197183101" />
+      <point x="-626.1349859154931" y="1285.9646197183101" />
+      <point x="0.0" y="-142.0" />
+    </edge>
+    <edge source="practice.hotel_system.entity.Clients" target="practice.hotel_system.entity.Bookings" relationship="TO_MANY">
+      <point x="0.0" y="96.0" />
+      <point x="-72.93295774647902" y="887.1848360563378" />
+      <point x="-544.4388597183098" y="887.1848360563378" />
+      <point x="0.0" y="-119.0" />
+    </edge>
+    <edge source="practice.hotel_system.entity.Payments" target="practice.hotel_system.entity.Invoices" relationship="TO_ONE">
+      <point x="0.0" y="-61.5" />
+      <point x="-955.3910084507042" y="555.25" />
+      <point x="-878.5754321126761" y="555.25" />
+      <point x="-878.5754321126761" y="365.5739853521127" />
+      <point x="-637.0936969014084" y="365.5739853521127" />
+      <point x="-637.0936969014084" y="451.8461656338028" />
+      <point x="-716.0" y="451.8461656338028" />
+      <point x="0.0" y="73.0" />
+    </edge>
+    <edge source="practice.hotel_system.entity.Invoices" target="practice.hotel_system.entity.Payments" relationship="TO_ONE">
+      <point x="0.0" y="73.0" />
+      <point x="-716.0" y="385.89249352112677" />
+      <point x="-955.3910084507042" y="385.89249352112677" />
+      <point x="0.0" y="-61.5" />
+    </edge>
+    <edge source="practice.hotel_system.entity.Bookings" target="practice.hotel_system.entity.ApartmentHasBooking" relationship="TO_MANY">
+      <point x="0.0" y="-119.0" />
+      <point x="-544.4388597183098" y="930.0323154929577" />
+      <point x="-80.43295774647902" y="930.0323154929577" />
+      <point x="0.0" y="-61.5" />
+    </edge>
+    <edge source="practice.hotel_system.entity.Apartments" target="practice.hotel_system.entity.Images" relationship="TO_MANY">
+      <point x="0.0" y="-142.0" />
+      <point x="-626.1349859154931" y="1372.4120563380284" />
+      <point x="-815.2144225352114" y="1372.4120563380284" />
+      <point x="-815.2144225352114" y="1199.385513897465" />
+      <point x="-1074.4768591323946" y="1199.385513897465" />
+      <point x="-1074.4768591323946" y="1336.8418028169017" />
+      <point x="-964.0307921126762" y="1336.8418028169017" />
+      <point x="0.0" y="50.0" />
+    </edge>
+    <edge source="practice.hotel_system.entity.ApartmentClasses" target="practice.hotel_system.entity.Apartments" relationship="TO_MANY">
+      <point x="0.0" y="84.5" />
+      <point x="-239.53397183098593" y="1315.8783098591553" />
+      <point x="-626.1349859154931" y="1315.8783098591553" />
+      <point x="0.0" y="-142.0" />
+    </edge>
+    <edge source="practice.hotel_system.entity.Bookings" target="practice.hotel_system.entity.BookingStatus" relationship="TO_ONE">
+      <point x="0.0" y="-119.0" />
+      <point x="-544.4388597183098" y="1079.554717746479" />
+      <point x="-964.0307921126762" y="1079.554717746479" />
+      <point x="0.0" y="61.5" />
+    </edge>
+    <edge source="practice.hotel_system.entity.Bookings" target="practice.hotel_system.entity.Clients" relationship="TO_ONE">
+      <point x="0.0" y="-119.0" />
+      <point x="-544.4388597183098" y="796.490366197183" />
+      <point x="-222.79815427605632" y="796.490366197183" />
+      <point x="-222.79815427605632" y="800.2107561464788" />
+      <point x="-172.50093709340894" y="800.2107561464788" />
+      <point x="-99.56797934692992" y="45.04076618276042" />
+    </edge>
+    <edge source="practice.hotel_system.entity.Invoices" target="practice.hotel_system.entity.Bookings" relationship="TO_ONE">
+      <point x="0.0" y="73.0" />
+      <point x="-716.0" y="952.5" />
+      <point x="-639.7105577464788" y="952.5" />
+      <point x="-639.7105577464788" y="776.7125633802818" />
+      <point x="-544.4388597183098" y="776.7125633802818" />
+      <point x="0.0" y="-119.0" />
+    </edge>
+    <edge source="practice.hotel_system.entity.Bookings" target="practice.hotel_system.entity.Invoices" relationship="TO_ONE">
+      <point x="0.0" y="-119.0" />
+      <point x="-672.8155763380282" y="768.1848360563378" />
+      <point x="-672.8155763380282" y="922.8930140845073" />
+      <point x="-753.6323966197183" y="922.8930140845073" />
+      <point x="-753.6323966197183" y="589.0" />
+      <point x="0.0" y="73.0" />
+    </edge>
+    <edge source="practice.hotel_system.entity.Clients" target="practice.hotel_system.entity.Users" relationship="TO_ONE">
+      <point x="0.0" y="96.0" />
+      <point x="-72.93295774647902" y="707.4956872112675" />
+      <point x="-312.6879801690142" y="707.4956872112675" />
+      <point x="-312.6879801690142" y="546.4812529577465" />
+      <point x="-202.10578028169016" y="546.4812529577465" />
+      <point x="0.0" y="-61.5" />
+    </edge>
+    <edge source="practice.hotel_system.entity.Apartments" target="practice.hotel_system.entity.ApartmentHasBooking" relationship="TO_MANY">
+      <point x="0.0" y="-142.0" />
+      <point x="-626.1349859154931" y="1186.09138028169" />
+      <point x="16.573014084506895" y="1186.09138028169" />
+      <point x="16.573014084506895" y="1068.6372957746478" />
+      <point x="-80.43295774647902" y="1068.6372957746478" />
+      <point x="0.0" y="-61.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Compact" zoom="0.48656798245614064" showDependencies="true" x="-251.82518591549297" y="759.437426760563" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
