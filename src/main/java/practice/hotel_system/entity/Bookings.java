@@ -46,12 +46,4 @@ public class Bookings {
     @OneToMany(mappedBy = "booking")
     private List<ApartmentHasBooking> apartmentHasBookings;
 
-    public Bookings(Payments payment, Date dateCreated, Clients client,
-                    String checkIn, String checkOut) {
-        this.payment = payment;
-        this.dateCreated = dateCreated;
-        this.client = client;
-        this.checkIn = checkIn;
-        this.checkOut = checkOut;
-    }
 }
