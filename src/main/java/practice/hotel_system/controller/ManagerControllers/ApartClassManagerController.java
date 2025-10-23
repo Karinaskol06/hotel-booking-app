@@ -19,7 +19,7 @@ public class ApartClassManagerController {
     @GetMapping("/manager/apartment_classes")
     public String getApartmentClasses(Model model) {
         model.addAttribute("apartment_classes", apartClassService.getAllApartmentClasses());
-        return "manager_apartClasses";
+        return "manager/pages/manager_apartClasses";
     }
 
     @PostMapping("/saveNewApartmentClass")

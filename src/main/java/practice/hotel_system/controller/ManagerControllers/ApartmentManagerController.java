@@ -10,6 +10,8 @@ import practice.hotel_system.entity.Apartments;
 import practice.hotel_system.service.ApartmentClassService;
 import practice.hotel_system.service.ApartmentService;
 
+import java.math.BigDecimal;
+
 @Controller
 public class ApartmentManagerController {
 
@@ -25,7 +27,7 @@ public class ApartmentManagerController {
     public String getApartmentsManagerPage(Model model) {
         model.addAttribute("apartments", apartmentService.findAll());
         model.addAttribute("apartment_classes", apartmentClassService.getAllApartmentClasses());
-        return "manager_apartments";
+        return "manager/pages/manager_apartments";
     }
 
     @PostMapping("/saveNewApartment")
@@ -33,7 +35,7 @@ public class ApartmentManagerController {
                                    @RequestParam(name = "apartClass") ApartmentClasses apartClass,
                                    @RequestParam(name = "apartNumber") int apartmentNumber,
                                    @RequestParam(name = "capacity") int capacity,
-                                   @RequestParam(name = "pricePerNight") double pricePerNight,
+                                   @RequestParam(name = "pricePerNight") BigDecimal pricePerNight,
                                    @RequestParam(name = "image") String linkImg,
                                    @RequestParam(name = "area") double area,
                                    @RequestParam(name = "numOfRooms") int numOfRooms){
@@ -57,15 +59,14 @@ public class ApartmentManagerController {
     @PostMapping("/updateApartment")
     public String updateApartment(@RequestParam(name = "idUpd") Apartments apartment,
                                   @RequestParam(name = "name") String name,
-                                  @RequestParam(name = "apartClass") Long apartClassId,
+                                  @RequestParam(name = "apartClass") ApartmentClasses apartClass,
                                   @RequestParam(name = "apartNumber") int apartmentNumber,
                                   @RequestParam(name = "capacity") int capacity,
-                                  @RequestParam(name = "pricePerNight") double pricePerNight,
+                                  @RequestParam(name = "pricePerNight") BigDecimal pricePerNight,
                                   @RequestParam(name = "image") String linkImg,
                                   @RequestParam(name = "area") double area,
                                   @RequestParam(name = "numOfRooms") int numOfRooms) {
         apartment.setName(name);
-        ApartmentClasses apartClass = apartmentClassService.getApartmentClassById(apartClassId);
         apartment.setApartmentClass(apartClass);
         apartment.setApartmentNumber(apartmentNumber);
         apartment.setCapacity(capacity);

@@ -35,8 +35,8 @@ public class AvailabilityService {
             }
 
             //we compare dates which user passes with dates that already exist in the db
-            LocalDate bookedCheckIn = LocalDate.parse(booking.getCheckIn(), formatter);
-            LocalDate bookedCheckOut = LocalDate.parse(booking.getCheckOut(), formatter);
+            LocalDate bookedCheckIn = booking.getCheckIn();
+            LocalDate bookedCheckOut = booking.getCheckOut();
 
             if (!(checkout.isBefore(bookedCheckIn) || checkin.compareTo(bookedCheckOut) >= 0)) {
                 return false;

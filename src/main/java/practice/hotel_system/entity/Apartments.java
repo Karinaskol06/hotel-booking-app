@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.List;
 
 @Getter
@@ -25,7 +26,7 @@ public class Apartments implements Serializable {
     private String name;
     private int apartmentNumber;
     private int capacity;
-    private double pricePerNight;
+    private BigDecimal pricePerNight;
 
     private String linkImg; //preview image
 

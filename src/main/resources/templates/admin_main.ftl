@@ -1,4 +1,4 @@
-<#import "admin/templ_admin.ftl" as p>
+<#import "admin/main/templ_admin.ftl" as p>
 <@p.pages>
 
     <div class="card shadow-sm mb-4" style="border-left: 6px solid #08A696; border-radius: 12px;">

@@ -1,4 +1,4 @@
-<#import "manager/templ_manager.ftl" as p>
+<#import "../main/templ_manager.ftl" as p>
 <@p.pages>
     <div class="container mt-4">
         <h2 class="mb-4 text-center">Адміністрування класів апартаментів</h2>

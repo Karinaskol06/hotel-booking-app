@@ -2,28 +2,39 @@ package practice.hotel_system.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.annotation.AccessType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import practice.hotel_system.bl.discount_strategy.PriceCalcResult;
 import practice.hotel_system.entity.ApartmentClasses;
 import practice.hotel_system.entity.Apartments;
+import practice.hotel_system.entity.Bookings;
 import practice.hotel_system.service.ApartmentClassService;
 import practice.hotel_system.service.ApartmentService;
 import practice.hotel_system.service.AvailabilityService;
+import practice.hotel_system.service.DiscountService;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class ApartmentController {
     private final ApartmentService apartmentService;
     private final ApartmentClassService apartmentClassService;
     private final AvailabilityService availabilityService;
+    private final DiscountService discountService;
 
-    public ApartmentController(ApartmentService apartmentService, ApartmentClassService apartmentClassService, AvailabilityService availabilityService) {
+    public ApartmentController(ApartmentService apartmentService, ApartmentClassService apartmentClassService, AvailabilityService availabilityService, DiscountService discountService) {
         this.apartmentService = apartmentService;
         this.apartmentClassService = apartmentClassService;
         this.availabilityService = availabilityService;
+        this.discountService = discountService;
     }
 
     //getting apartments by apartment class
@@ -45,7 +56,6 @@ public class ApartmentController {
             checkout = (String) session.getAttribute("checkout");
         }
 
-        //getting apartment class id
         ApartmentClasses apartmentClass = apartmentService.getApartmentClassById(classId);
 
         if (checkin == null || checkout == null || checkin.isEmpty() || checkout.isEmpty()) {
@@ -77,12 +87,25 @@ public class ApartmentController {
 
         List<Apartments> apartmentsList = availabilityService
                 .getAvailableApartmentsByClass(apartmentClass, checkinLoc, checkoutLoc);
+        Map<String, PriceCalcResult> priceMap = new HashMap<>();
+
+        for (Apartments apartment : apartmentsList) {
+            BigDecimal basePrice = apartment.getPricePerNight()
+                    .multiply(BigDecimal.valueOf(ChronoUnit.DAYS.between(checkinLoc, checkoutLoc)));
+            Bookings tempBooking = new Bookings();
+            tempBooking.setCheckIn(checkinLoc);
+            tempBooking.setCheckOut(checkoutLoc);
+
+            PriceCalcResult priceCalc = discountService.calcFinalPrice(tempBooking, basePrice);
+            priceMap.put(apartment.getId().toString(), priceCalc);
+        }
 
         if (apartmentsList.isEmpty()) {
             model.addAttribute("infoMessage",
                     "Всі апартаменти даного класу заброньовані на вибрані дати.");
         }
 
+        model.addAttribute("priceMap", priceMap);
         model.addAttribute("checkin", checkin);
         model.addAttribute("checkout", checkout);
         model.addAttribute("apartments", apartmentsList);

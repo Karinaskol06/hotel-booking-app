@@ -56,13 +56,40 @@
                                 <div class="col-md-6 d-flex flex-column justify-content-between">
                                     <div class="card-body d-flex flex-column justify-content-between p-6" style="height: 100%;">
                                         <div class="d-flex flex-column gap-2" style="flex-grow: 1; overflow: hidden;">
-                                            <h4 class="card-title mb-4 ">${apartment.name}</h4>
+                                            <h4 class="card-title mb-4">${apartment.name}</h4>
                                             <p class="card-text mb-1">
                                                 <b>Клас:</b> ${apartment.apartmentClass.apartmentClass}
                                             </p>
+
+                                            <#assign priceResult = priceMap[apartment.id?string]!>
+
+                                            <#if priceResult?? && priceResult.hasDiscount()>
+                                                <p class="card-text mb-1">
+                                                    <b>Вартість:</b>
+                                                    <span class="text-decoration-line-through text-muted me-2">
+                                                        ${priceResult.originalPrice} грн.
+                                                    </span>
+                                                    <span class="text fw-bold me-2">
+                                                        ${priceResult.finalPrice} грн.
+                                                    </span>
+                                                    <span class="badge bg-success">${priceResult.discountPercentage}% off</span>
+                                                </p>
+                                            <#elseif priceResult??>
+                                                <p class="card-text mb-1" style="text-decoration: underline;">
+                                                    <b>Вартість бронювання: </b> ${priceResult.finalPrice} грн.
+                                                </p>
+                                            <#else>
+                                                <#assign nights = ((checkout?date("yyyy-MM-dd")?long - checkin?date("yyyy-MM-dd")?long) / (24 * 60 * 60 * 1000))>
+                                                <#assign totalPrice = apartment.pricePerNight * nights>
+                                                <p class="card-text mb-1">
+                                                    <b>Вартість бронювання:</b> ${totalPrice?round} грн.
+                                                </p>
+                                            </#if>
+
                                             <p class="card-text mb-1">
-                                                <b>Ціна:</b> ${apartment.pricePerNight} грн./ніч
+                                                <b>Ціна за добу:</b> ${apartment.pricePerNight} грн.
                                             </p>
+
                                             <p class="card-text mb-1">
                                                 <b>Місткість:</b> ${apartment.capacity} ос.
                                             </p>
@@ -73,6 +100,7 @@
                                                 <b>Кількість кімнат:</b> ${apartment.numOfRooms}
                                             </p>
                                         </div>
+
                                         <form method="post" action="/addToCart" class="mt-auto">
                                             <input type="hidden" name="id" value="${apartment.id}">
                                             <input type="hidden" name="checkin" value="${checkin}">
@@ -94,7 +122,7 @@
                                 </div>
                                 <div class="modal-body">
                                     <div class="row">
-                                        <!--частина з фотографіями -->
+                                        <!-- Photo section -->
                                         <div class="col-md-6">
                                             <#assign photos = apartment.apartmentImages?filter(img -> img.urlImg?has_content)>
                                             <#if photos?size == 0>
@@ -126,13 +154,24 @@
                                             </#if>
                                         </div>
 
-                                        <!--частина з інформацією -->
                                         <div class="col-md-6 d-flex flex-column justify-content-center">
                                             <div class="mb-3">
                                                 <h3 class="mb-4">${apartment.name}</h3>
                                                 <p><b>Клас апартаментів:</b> ${apartment.apartmentClass.apartmentClass}</p>
                                                 <p><b>Місткість:</b> ${apartment.capacity} ос.</p>
                                                 <p><b>Ціна за ніч:</b> ${apartment.pricePerNight} грн.</p>
+
+                                                <#assign priceResult = priceMap[apartment.id?string]!>
+                                                <#if priceResult?? && priceResult.hasDiscount()>
+                                                    <p class="fw-bold mt-3">
+                                                        <b>Вартість:</b>
+                                                        <s class="text-muted me-2">${priceResult.originalPrice} грн.</s>
+                                                        <span class="text me-2">${priceResult.finalPrice} грн.</span>
+                                                        <span class="badge bg-success">${priceResult.discountPercentage}% off</span>
+                                                    </p>
+                                                <#elseif priceResult??>
+                                                    <p class="fw-bold mt-3">Ціна: ${priceResult.finalPrice} грн.</p>
+                                                </#if>
                                             </div>
                                             <div>
                                                 <p><b>Опис класу:</b></p>

@@ -1,4 +1,4 @@
-<#import "manager/templ_manager.ftl" as p>
+<#import "manager/main/templ_manager.ftl" as p>
 <@p.pages>
 
 

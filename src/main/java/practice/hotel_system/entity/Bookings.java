@@ -1,5 +1,6 @@
 package practice.hotel_system.entity;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -24,8 +25,8 @@ public class Bookings {
     private Long id;
 
     private Date dateCreated;
-    private String checkIn;
-    private String checkOut;
+    private LocalDate checkIn;
+    private LocalDate checkOut;
 
     @Enumerated(EnumType.STRING)
     private BookingStatus status;

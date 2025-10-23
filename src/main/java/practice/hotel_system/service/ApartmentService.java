@@ -17,19 +17,14 @@ import java.util.List;
 public class ApartmentService {
 
     private final ApartmentRepository apartmentsRepository;
-    private final BookingService bookingService;
-    private final AvailabilityService availabilityService;
     //provides direct access to all caches (useful for delete)
     private final CacheManager cacheManager;
     private final ApartmentClassRepository apartmentClassRepository;
 
     @Autowired
-    public ApartmentService(ApartmentRepository apartmentRepository, BookingService bookingService,
-                            AvailabilityService availabilityService, CacheManager cacheManager,
+    public ApartmentService(ApartmentRepository apartmentRepository, CacheManager cacheManager,
                             ApartmentClassRepository apartmentClassRepository) {
         this.apartmentsRepository = apartmentRepository;
-        this.bookingService = bookingService;
-        this.availabilityService = availabilityService;
         this.cacheManager = cacheManager;
         this.apartmentClassRepository = apartmentClassRepository;
     }

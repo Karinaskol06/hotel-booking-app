@@ -29,7 +29,7 @@ public class UserAdminController {
         model.addAttribute("users", userService.findAllUsers());
         model.addAttribute("clients", clientService.getAllClients());
 
-        return "list-users-admin";
+        return "admin/pages/list-users-admin";
     }
 
     @GetMapping("/admin/update-user")
@@ -37,7 +37,7 @@ public class UserAdminController {
         model.addAttribute("users", userService.findAllUsers());
         model.addAttribute("clients", clientService.getAllClients());
 
-        return "update_username_password";
+        return "admin/pages/update_username_password";
     }
 
     @PostMapping("/updateUsernameAndPassword")
@@ -65,7 +65,7 @@ public class UserAdminController {
     public String getRolesHaveUsersPage(Model model) {
         model.addAttribute("users", userService.findAllUsers());
 
-        return "roles_have_users";
+        return "admin/pages/roles_have_users";
     }
 
     @PostMapping("/saveNewRoleForUser")

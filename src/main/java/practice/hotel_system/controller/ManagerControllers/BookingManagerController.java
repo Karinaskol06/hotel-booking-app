@@ -35,7 +35,7 @@ public class BookingManagerController {
         model.addAttribute("bookings", bookingService.getSortedBookings());
         model.addAttribute("statuses", BookingStatus.values());
 
-        return "manager_booking";
+        return "manager/pages/manager_booking";
     }
 
     @GetMapping("/manager/bookings/{id}")
@@ -55,7 +55,7 @@ public class BookingManagerController {
             map.put("nights", nights);
             apartmentsWithNights.add(map);
 
-            BigDecimal pricePerNight = BigDecimal.valueOf(ahb.getApartment().getPricePerNight());
+            BigDecimal pricePerNight = ahb.getApartment().getPricePerNight();
             BigDecimal bookingTotal = pricePerNight.multiply(BigDecimal.valueOf(nights));
 
             totalValue = totalValue.add(bookingTotal);
@@ -67,7 +67,7 @@ public class BookingManagerController {
         model.addAttribute("nights", nights);
         model.addAttribute("apartmentsWithNights", apartmentsWithNights);
 
-        return "view_booking";
+        return "manager/pages/view_booking";
     }
 
     @PostMapping("/manager/bookings/{id}/status")

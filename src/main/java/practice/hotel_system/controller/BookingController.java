@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import practice.hotel_system.bl.Cart;
 import practice.hotel_system.bl.ItemCart;
+import practice.hotel_system.bl.discount_strategy.PriceCalcResult;
 import practice.hotel_system.entity.*;
 import practice.hotel_system.service.*;
 
@@ -19,8 +20,6 @@ import java.math.BigDecimal;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.stream.Collectors;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 @Controller
 public class BookingController {
@@ -29,11 +28,12 @@ public class BookingController {
     private final ClientService clientService;
     private final UserService userService;
     private final ApartmentHasBookingService apartmentHasBookingService;
+    private final DiscountService discountService;
 
     private final ApartmentService apartmentService;
     private final ApartmentClassService apartmentClassService;
 
-    public BookingController(BookingService bookingService, ClientService clientService, UserService userService,
+    public BookingController(BookingService bookingService, ClientService clientService, UserService userService, DiscountService discountService,
                              ApartmentService apartmentService,
                              ApartmentHasBookingService apartmentHasBookingService,
 
@@ -41,6 +41,7 @@ public class BookingController {
         this.bookingService = bookingService;
         this.clientService = clientService;
         this.userService = userService;
+        this.discountService = discountService;
         this.apartmentHasBookingService = apartmentHasBookingService;
         this.apartmentService = apartmentService;
         this.apartmentClassService = apartmentClassService;
@@ -84,6 +85,20 @@ public class BookingController {
                         item.getCheckin(),
                         item.getCheckout())
                 ).collect(Collectors.toList());
+        //calculating total price with discounts
+        Map<String, PriceCalcResult> cartPriceMap = new HashMap<>();
+        for (ItemCart item : cart.getCart()) {
+            long nights = ChronoUnit.DAYS.between(item.getCheckin(), item.getCheckout());
+            BigDecimal basePrice = item.getApartment().getPricePerNight()
+                    .multiply(BigDecimal.valueOf(nights));
+
+            Bookings tempBooking = new Bookings();
+            tempBooking.setCheckIn(item.getCheckin());
+            tempBooking.setCheckOut(item.getCheckout());
+
+            PriceCalcResult priceCalc = discountService.calcFinalPrice(tempBooking, basePrice);
+            cartPriceMap.put(item.getApartment().getId().toString(), priceCalc);
+        }
 
         model.addAttribute("client", clientService.getClientById(userId));
         model.addAttribute("cart", cart.getCart());
@@ -92,6 +107,7 @@ public class BookingController {
         model.addAttribute("nights", nightsList);
         model.addAttribute("apartments", apartmentService.findAll());
         model.addAttribute("apartment_classes", apartmentClassService.getAllApartmentClasses());
+        model.addAttribute("cartPriceMap", cartPriceMap);
 
         return "booking";
     }
@@ -115,72 +131,20 @@ public class BookingController {
         }
 
         HttpSession session = request.getSession();
-
-        //getting cart from session
         Cart cart = (Cart) session.getAttribute("cart");
         if (cart == null || cart.getCart() == null || cart.getCart().isEmpty()) {
             return "redirect:/";
         }
 
-        //create new booking
-        Bookings booking = new Bookings();
-
-        booking.setPayment(payment);
-        booking.setDateCreated(new Date());
-        //all bookings initially are not processed
-        booking.setStatus(BookingStatus.valueOf("NOT_PROCESSED"));
-
-        Clients client = clientService.getClientById(userId);
-        booking.setClient(client);
-
-        LocalDate checkin = cart.getCart().stream()
-                .map(ItemCart::getCheckin)
-                .min(LocalDate::compareTo)
-                .orElse(null);
-
-        LocalDate checkout = cart.getCart().stream()
-                .map(ItemCart::getCheckout)
-                .max(LocalDate::compareTo)
-                .orElse(null);
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        //if checkin and checkout are not empty, they're formatted
-        booking.setCheckIn(checkin != null ? checkin.format(formatter) : null);
-        booking.setCheckOut(checkout != null ? checkout.format(formatter) : null);
-
-        BigDecimal totalAmount = calculateTotalAmount(cart);
-        Bookings savedBooking = bookingService.saveNewBooking(booking, totalAmount);
-
-        for (ItemCart el : cart.getCart()) {
-            apartmentHasBookingService.saveNewApartmentByBooking(el.getApartment(), savedBooking,
-                    el.getCheckin(), el.getCheckout()
-            );
-        }
+        //delegate business logic to service
+        Bookings savedBooking = bookingService.createNewBooking(userId, payment, cart);
         //clearing the cart
         cart.deleteAllFromCart();
         session.setAttribute("cart", cart);
 
         redirectAttributes.addAttribute("bookingId", savedBooking.getId());
-
         return "redirect:/thank";
     }
-
-    private BigDecimal calculateTotalAmount(Cart cart) {
-        BigDecimal totalAmount = BigDecimal.ZERO;
-
-        for (ItemCart item : cart.getCart()) {
-            long nights = java.time.temporal.ChronoUnit.DAYS.between(item.getCheckin(), item.getCheckout());
-            double price = item.getApartment().getPricePerNight();
-            BigDecimal pricePerNight = BigDecimal.valueOf(price);
-            BigDecimal itemTotal = pricePerNight.multiply(BigDecimal.valueOf(nights));
-
-            totalAmount = totalAmount.add(itemTotal);
-        }
-
-        return totalAmount;
-    }
-
-
 
     @GetMapping("/thank")
     public String getThankPage(
@@ -200,14 +164,27 @@ public class BookingController {
 
         //calculating the number of nights for every single apart
         List<Map<String, Object>> apartmentsWithNights = new ArrayList<>();
+        BigDecimal originalTotalAmount = BigDecimal.ZERO;
+        BigDecimal discountedTotalAmount = BigDecimal.ZERO;
+
         for (ApartmentHasBooking ahb : apartmentHasBookings) {
             long nights = ChronoUnit.DAYS.between(ahb.getCheckIn(), ahb.getCheckOut());
             Map<String, Object> map = new HashMap<>();
             map.put("ahb", ahb);
             map.put("nights", nights);
+
+            BigDecimal originalPrice = ahb.getApartment().getPricePerNight()
+                    .multiply(BigDecimal.valueOf(nights));
+            originalTotalAmount = originalTotalAmount.add(originalPrice);
+
+            discountedTotalAmount = discountedTotalAmount.add(ahb.getBooking().getInvoice().getTotalAmount());
             apartmentsWithNights.add(map);
         }
+
         model.addAttribute("apartmentsWithNights", apartmentsWithNights);
+        if (originalTotalAmount.compareTo(discountedTotalAmount) > 0) {
+            model.addAttribute("originalTotalAmount", originalTotalAmount);
+        }
 
         return "thank";
     }

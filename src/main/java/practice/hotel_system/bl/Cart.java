@@ -4,10 +4,12 @@ import lombok.Getter;
 import lombok.Setter;
 import practice.hotel_system.entity.Apartments;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.time.temporal.ChronoUnit;
 
 @Getter
 @Setter
@@ -17,7 +19,6 @@ public class Cart {
     //price of the whole purchase
     public double totalValue;
     public double sumElements;
-    public long nights;
 
     public Cart() {
         cart = new ArrayList<>();
@@ -58,18 +59,17 @@ public class Cart {
     }
 
     //getTotalValue
-    public double getTotalValue() {
-        double totalPrice = 0;
-        for (ItemCart item : cart) {
-            long days = java.time.temporal.ChronoUnit.DAYS.between(item.getCheckin(), item.getCheckout());
-            totalPrice += item.getApartment().getPricePerNight() * days;
-        }
-        return totalPrice;
-    }
+    public BigDecimal getTotalValue() {
+        BigDecimal totalPrice = BigDecimal.ZERO;
+        for (ItemCart i : cart) {
+            long days = ChronoUnit.DAYS.between(i.getCheckin(), i.getCheckout());
+            BigDecimal pricePerNight = i.getApartment().getPricePerNight();
+            BigDecimal totalForItem = pricePerNight.multiply(BigDecimal.valueOf(days));
 
-    //getQuantityOfNights
-    public long getQuantityOfNights(ItemCart itemCart) {
-        return java.time.temporal.ChronoUnit.DAYS.between(itemCart.getCheckin(), itemCart.getCheckout());
+            totalPrice = totalPrice.add(totalForItem);
+        }
+
+        return totalPrice;
     }
 
     //getSumElements

@@ -2,7 +2,7 @@
 <@p.pages>
     <div class="container my-5">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-10">
                 <div class="card">
                     <div class="card-header bg-success text-white">
                         <h3 class="mb-0">Дякуємо за ваше бронювання!</h3>
@@ -30,9 +30,6 @@
                                         ${booking.payment.paymentMethod}
                                     </div>
                                 </div>
-                                <div class="row mb-2">
-
-                                </div>
 
                                 <div class="booked-items mt-4">
                                     <h5 class="text-center mb-3">Заброньовані апартаменти:</h5>
@@ -53,6 +50,9 @@
                                         <#list apartmentsWithNights as item>
                                             <#assign ahb = item.ahb>
                                             <#assign nights = item.nights>
+                                            <#assign totalPrice = ahb.apartment.pricePerNight * nights>
+                                            <#assign discountedPrice = ahb.totalPrice!totalPrice>
+                                            <#assign hasDiscount = (discountedPrice != totalPrice)>
 
                                             <tr>
                                                 <td>${ahb.apartment.name}</td>
@@ -62,14 +62,36 @@
                                                 <td>${ahb.checkOut}</td>
                                                 <td>${ahb.apartment.pricePerNight} грн</td>
                                                 <td>${nights}</td>
-                                                <td>${ahb.apartment.pricePerNight * nights} грн</td>
+                                                <td>
+                                                    <#if hasDiscount>
+                                                        <div>
+                                                            <s class="text-muted small">${totalPrice} грн</s>
+                                                            <div class="text-success fw-bold">${discountedPrice} грн</div>
+                                                            <small class="text-success">
+                                                                Знижка: ${((totalPrice - discountedPrice) / totalPrice * 100)?round}%
+                                                            </small>
+                                                        </div>
+                                                    <#else>
+                                                        ${totalPrice} грн
+                                                    </#if>
+                                                </td>
                                             </tr>
                                         </#list>
                                         </tbody>
                                         <tfoot>
-                                        <tr>
-                                            <td colspan="8" class="text-end text-center">
-                                                <strong>Загальна сума: ${invoice.totalAmount} грн</strong>
+                                        <tr class="table-active">
+                                            <td colspan="6"></td>
+                                            <td class="text-end"><strong>Разом:</strong></td>
+                                            <td class="text-center">
+                                                <strong>${invoice.totalAmount} грн</strong>
+                                                <#if originalTotalAmount?? && originalTotalAmount != invoice.totalAmount>
+                                                    <div>
+                                                        <s class="text-muted small">${originalTotalAmount} грн</s>
+                                                        <div class="text-success">
+                                                            Заощадження: ${(originalTotalAmount - invoice.totalAmount)} грн
+                                                        </div>
+                                                    </div>
+                                                </#if>
                                             </td>
                                         </tr>
                                         </tfoot>
@@ -92,4 +114,10 @@
             </div>
         </div>
     </div>
+
+    <style>
+        .text-decoration-line-through {
+            text-decoration: line-through !important;
+        }
+    </style>
 </@p.pages>

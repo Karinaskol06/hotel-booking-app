@@ -1,4 +1,4 @@
-<#import "admin/templ_admin.ftl" as p>
+<#import "../main/templ_admin.ftl" as p>
 <@p.pages>
     <style>
         table {
