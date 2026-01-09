@@ -2,7 +2,7 @@
 <#import "/spring.ftl" as s>
 <@p.pages>
 
-    <h3 class="text-center mt-4 mb-5">Регістрація нового користувача в системі</h3>
+    <h3 class="text-center mt-4 mb-5">New User Registration</h3>
 
     <form action="/registration" method="post" class="container d-flex flex-column align-items-center" style="max-width: 500px;">
 
@@ -60,7 +60,7 @@
             </div>
         </div>
         <div class="d-flex justify-content-center w-100 mb-4">
-            <button type="submit" class="btn btn-outline-success w-50">Додати користувача</button>
+            <button type="submit" class="btn btn-outline-success w-50">Add User</button>
         </div>
     </form>
 

@@ -11,7 +11,7 @@
     </div>
 
     <!-- cards -->
-    <h2 class="text-center mt-3" id="apartment-classes">Класи апартаментів</h2>
+    <h2 class="text-center mt-3" id="apartment-classes">Apartment classes</h2>
     <div class="container pt-4">
       <#if apartment_classes??>
         <div class="row row-cols-2 g-4">

@@ -55,7 +55,8 @@
         }
     </style>
 
-    <h2>Сторінка адміністрування користувачів</h2>
+    <h2>User Administration Page</h2>
+
     <#if successMess??>
         <div style="padding: 1rem; margin: 1rem 0; background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; border-radius: 5px;">
             ${successMess}
@@ -71,10 +72,10 @@
     <table>
         <thead>
         <tr>
-            <th>Ім'я</th>
-            <th>Прізвище</th>
-            <th>Електронна пошта</th>
-            <th>Номер телефону</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
             <th>Username</th>
             <th>Password</th>
         </tr>

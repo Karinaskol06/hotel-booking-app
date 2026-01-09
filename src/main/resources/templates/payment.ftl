@@ -2,13 +2,13 @@
 
 <@p.pages>
 
-<h3 class="text-center mt-4">Оплати</h3>
-<br>
-<h4>Доступні методи оплати</h4>
-<ul>
-    <li>Банківська картка</li>
-    <li>Google Pay</li>
-    <li>Apple Pay</li>
-</ul>
+    <h3 class="text-center mt-4">Payments</h3>
+    <br>
+    <h4>Available Payment Methods</h4>
+    <ul>
+        <li>Bank card</li>
+        <li>Google Pay</li>
+        <li>Apple Pay</li>
+    </ul>
 
 </@p.pages>

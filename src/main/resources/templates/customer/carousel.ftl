@@ -9,21 +9,21 @@
             <img src="/static/images/carousel1.jpg" class="d-block w-100" style="height: 100vh; object-fit: cover;" alt="...">
             <div class="carousel-caption d-none d-md-block">
                 <h3 style="font-size: 2.5rem; font-weight: bold;">Velour Hotel</h3>
-                <p style="font-size: 1.2rem;">Ласкаво просимо!</p>
+                <p style="font-size: 1.2rem;">Welcome!</p>
             </div>
         </div>
         <div class="carousel-item">
             <img src="/static/images/carousel 2.jpg" class="d-block w-100" style="height: 100vh; object-fit: cover;" alt="...">
             <div class="carousel-caption d-none d-md-block">
-                <h5 style="font-size: 2rem; font-weight: bold;" class="mb-3">Розкішний дизайн</h5>
-                <p style="font-size: 1.2rem;">Інтер'єр готелю поєднує витончену сучасність з класикою.</p>
+                <h5 style="font-size: 2rem; font-weight: bold;" class="mb-3">Luxury Design</h5>
+                <p style="font-size: 1.2rem;">The hotel interior blends refined modern style with classic elegance.</p>
             </div>
         </div>
         <div class="carousel-item">
             <img src="/static/images/carousel3.jpg" class="d-block w-100" style="height: 100vh; object-fit: cover;" alt="...">
             <div class="carousel-caption d-none d-md-block">
-                <h5 style="font-size: 2rem; font-weight: bold;">Висока оцінка гостей</h5>
-                <p style="font-size: 1.2rem;">Лідер за відгуками клієнтів щодо стилю, комфорту та сервісу.</p>
+                <h5 style="font-size: 2rem; font-weight: bold;">Highly Rated by Guests</h5>
+                <p style="font-size: 1.2rem;">A leader in customer reviews for style, comfort, and service.</p>
             </div>
         </div>
     </div>

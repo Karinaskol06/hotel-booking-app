@@ -9,10 +9,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/manager">Головна менеджера</a>
+                        <a class="nav-link active" aria-current="page" href="/manager">Manager Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link">Відгуки і пропозиції</a>
+                        <a class="nav-link">Reviews and Suggestions</a>
                     </li>
                 </ul>
             </div>

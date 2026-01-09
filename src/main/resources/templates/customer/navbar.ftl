@@ -1,18 +1,18 @@
 <ul class="nav nav-tabs">
     <li class="nav-item">
-        <a class="nav-link active" href="/">Головна</a>
+        <a class="nav-link active" href="/">Home</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link text-dark-emphasis" href="/#apartment-classes">Класи апартаментів</a>
+        <a class="nav-link text-dark-emphasis" href="/#apartment-classes">Apartment Classes</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link text-dark-emphasis" href="/booking">Бронювання</a>
+        <a class="nav-link text-dark-emphasis" href="/booking">Booking</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link text-dark-emphasis" href="/about_us">Про нас</a>
+        <a class="nav-link text-dark-emphasis" href="/about_us">About Us</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link text-dark-emphasis" href="/contacts">Контакти</a>
+        <a class="nav-link text-dark-emphasis" href="/contacts">Contacts</a>
     </li>
 
     <li class="nav-item ms-auto me-2">
@@ -24,10 +24,9 @@
         </a>
     </li>
 
-
     <form action="/login" method="get" class="mb-3">
         <button class="btn btn-outline-dark login-btn" type="submit">
-            Вхід / Реєстрація
+            Sign In / Register
         </button>
     </form>
 </ul>

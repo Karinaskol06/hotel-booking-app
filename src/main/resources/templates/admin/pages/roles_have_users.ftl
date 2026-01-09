@@ -85,13 +85,13 @@
 
             <#if user.rolesSet?has_content>
                 <div class="mb-2">
-                    <strong>Поточні ролі:</strong>
+                    <strong>Current roles:</strong>
                     <#list user.rolesSet as role>
                         <span>${role.roleName}</span><#if role_has_next>, </#if>
                     </#list>
                 </div>
             <#else>
-                <div><em>Користувач не має жодної ролі</em></div>
+                <div><em>User doesn't have any role</em></div>
             </#if>
 
             <form class="form-inline" action="/saveNewRoleForUser" method="post">
@@ -101,7 +101,7 @@
                     <option value="2">ROLE_manager</option>
                     <option value="3">ROLE_admin</option>
                 </select>
-                <button type="submit"><i class="bi bi-plus-circle"></i> Додати роль</button>
+                <button type="submit"><i class="bi bi-plus-circle"></i> Add role</button>
             </form>
         </div>
     </#list>

@@ -5,45 +5,45 @@
             <div class="col-md-10">
                 <div class="card">
                     <div class="card-header bg-success text-white">
-                        <h3 class="mb-0">Дякуємо за ваше бронювання!</h3>
+                        <h3 class="mb-0">Thank you for your booking!</h3>
                     </div>
                     <div class="card-body">
                         <#if invoice??>
-                            <h4>Рахунок-фактура</h4>
+                            <h4>Invoice</h4>
                             <div class="invoice-details p-3 border rounded mb-4">
                                 <div class="row mb-2">
                                     <div class="col-md-6">
-                                        <strong>Номер рахунку:</strong> ${invoice.id}
+                                        <strong>Invoice number:</strong> ${invoice.id}
                                     </div>
                                     <div class="col-md-6">
-                                        <strong>Дата:</strong> ${invoice.date?string("dd.MM.yyyy")}
+                                        <strong>Date:</strong> ${invoice.date?string("dd.MM.yyyy")}
                                     </div>
                                 </div>
                                 <div class="row mb-2">
                                     <div class="col-md-6">
-                                        <strong>Клієнт:</strong>
+                                        <strong>Client:</strong>
                                         ${booking.client.firstName}
                                         ${booking.client.lastName}
                                     </div>
                                     <div class="col-md-6">
-                                        <strong>Метод оплати:</strong>
+                                        <strong>Payment method:</strong>
                                         ${booking.payment.paymentMethod}
                                     </div>
                                 </div>
 
                                 <div class="booked-items mt-4">
-                                    <h5 class="text-center mb-3">Заброньовані апартаменти:</h5>
+                                    <h5 class="text-center mb-3">Booked apartments:</h5>
                                     <table class="table table-striped">
                                         <thead>
                                         <tr>
-                                            <th>Назва</th>
-                                            <th>Номер</th>
-                                            <th>Клас</th>
-                                            <th>Дата заїзду</th>
-                                            <th>Дата виїзду</th>
-                                            <th>Ціна за добу</th>
-                                            <th>Кількість ночей</th>
-                                            <th>Вартість</th>
+                                            <th>Name</th>
+                                            <th>Number</th>
+                                            <th>Class</th>
+                                            <th>Check-in date</th>
+                                            <th>Check-out date</th>
+                                            <th>Price per night</th>
+                                            <th>Number of nights</th>
+                                            <th>Total price</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -68,7 +68,7 @@
                                                             <s class="text-muted small">${totalPrice} грн</s>
                                                             <div class="text-success fw-bold">${discountedPrice} грн</div>
                                                             <small class="text-success">
-                                                                Знижка: ${((totalPrice - discountedPrice) / totalPrice * 100)?round}%
+                                                                Discount: ${((totalPrice - discountedPrice) / totalPrice * 100)?round}%
                                                             </small>
                                                         </div>
                                                     <#else>
@@ -81,14 +81,14 @@
                                         <tfoot>
                                         <tr class="table-active">
                                             <td colspan="6"></td>
-                                            <td class="text-end"><strong>Разом:</strong></td>
+                                            <td class="text-end"><strong>Total:</strong></td>
                                             <td class="text-center">
                                                 <strong>${invoice.totalAmount} грн</strong>
                                                 <#if originalTotalAmount?? && originalTotalAmount != invoice.totalAmount>
                                                     <div>
                                                         <s class="text-muted small">${originalTotalAmount} грн</s>
                                                         <div class="text-success">
-                                                            Заощадження: ${(originalTotalAmount - invoice.totalAmount)} грн
+                                                            Savings: ${(originalTotalAmount - invoice.totalAmount)} грн
                                                         </div>
                                                     </div>
                                                 </#if>
@@ -101,13 +101,13 @@
                         </#if>
 
                         <div class="text-center my-4">
-                            <p class="lead">Ваше бронювання успішно оформлено та прийнято до обробки.</p>
-                            <p>Номер вашого бронювання: <strong>${booking.id}</strong></p>
-                            <p>Наш менеджер зв'яжеться з вами найближчим часом для підтвердження деталей.</p>
+                            <p class="lead">Your booking has been successfully completed and accepted for processing.</p>
+                            <p>Your booking number: <strong>${booking.id}</strong></p>
+                            <p>Our manager will contact you shortly to confirm the details.</p>
                         </div>
 
                         <div class="text-center mt-4">
-                            <a href="/" class="btn btn-outline-success">Повернутися на головну</a>
+                            <a href="/" class="btn btn-outline-success">Return to homepage</a>
                         </div>
                     </div>
                 </div>

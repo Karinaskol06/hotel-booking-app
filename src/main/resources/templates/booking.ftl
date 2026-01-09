@@ -51,13 +51,13 @@
     </style>
 
     <div class="container py-4">
-        <h3 class="text-center mb-3">Інформація про користувача</h3>
+        <h3 class="text-center mb-3">User Information</h3>
         <table class="table table-hover shadow-sm rounded overflow-hidden mb-5">
             <thead>
             <tr>
-                <th>Імʼя</th>
-                <th>Прізвище</th>
-                <th>Телефон</th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Phone</th>
                 <th>Email</th>
             </tr>
             </thead>
@@ -70,7 +70,7 @@
         </table>
 
         <hr>
-        <h4 class="text-center mb-4 mt-4">Інформація про бронювання</h4>
+        <h4 class="text-center mb-4 mt-4">Booking Information</h4>
 
         <#if cart?? && cart?size gt 0>
             <div class="row justify-content-center g-4 mb-5">
@@ -82,8 +82,8 @@
                             <div class="card-body d-flex flex-column justify-content-between">
                                 <div>
                                     <h5 class="card-title text-center">${item.apartment.name}</h5>
-                                    <p class="text-center"><strong>Кількість ночей:</strong> ${nights[item_index]}</p>
-                                    <p class="text-center"><strong>Ціна за ніч:</strong> ${item.apartment.pricePerNight} грн</p>
+                                    <p class="text-center"><strong>Number of nights:</strong> ${nights[item_index]}</p>
+                                    <p class="text-center"><strong>Price per night:</strong> ${item.apartment.pricePerNight} UAH</p>
 
                                     <div class="price-section text-center">
                                         <#assign itemTotalPrice = item.apartment.pricePerNight * nights[item_index]>
@@ -91,27 +91,29 @@
 
                                         <#if itemPriceResult?? && itemPriceResult.hasDiscount()>
                                             <p class="mb-1">
-                                                <strong>Загальна вартість:</strong><br>
+                                                <strong>Total price:</strong><br>
                                                 <span class="text-decoration-line-through text-muted">
-                                                    ${itemTotalPrice} грн
+                                                    ${itemTotalPrice} UAH
                                                 </span><br>
                                                 <span class="text-success fw-bold fs-5">
-                                                    ${itemPriceResult.finalPrice} грн
+                                                    ${itemPriceResult.finalPrice} UAH
                                                 </span><br>
                                                 <span class="badge bg-success mt-1">
-                                                    Знижка ${itemPriceResult.discountPercentage}%
+                                                    Discount ${itemPriceResult.discountPercentage}%
                                                 </span>
                                             </p>
                                         <#else>
                                             <p class="mb-0">
-                                                <strong>Загальна вартість:</strong><br>
-                                                <span class="fw-bold fs-5">${itemTotalPrice} грн</span>
+                                                <strong>Total price:</strong><br>
+                                                <span class="fw-bold fs-5">${itemTotalPrice} UAH</span>
                                             </p>
                                         </#if>
                                     </div>
                                 </div>
-                                <button class="btn btn-outline-success mt-3" data-bs-toggle="modal" data-bs-target="#modal-${item.apartment.id}">
-                                    Детальніше
+                                <button class="btn btn-outline-success mt-3"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#modal-${item.apartment.id}">
+                                    View details
                                 </button>
                             </div>
                         </div>
@@ -120,12 +122,17 @@
             </div>
 
             <#list cart as item>
-                <div class="modal fade" id="modal-${item.apartment.id}" tabindex="-1" aria-labelledby="modalLabel-${item.apartment.id}" aria-hidden="true">
+                <div class="modal fade" id="modal-${item.apartment.id}" tabindex="-1"
+                     aria-labelledby="modalLabel-${item.apartment.id}" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="modalLabel-${item.apartment.id}">${item.apartment.name}</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <h1 class="modal-title fs-5"
+                                    id="modalLabel-${item.apartment.id}">
+                                    ${item.apartment.name}
+                                </h1>
+                                <button type="button" class="btn-close"
+                                        data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                                 <div class="row">
@@ -138,7 +145,8 @@
                                             <img src="${photos[0].urlImg}" class="d-block w-100"
                                                  style="height: 500px; object-fit: cover;">
                                         <#else>
-                                            <div id="carousel-${item.apartment.id}" class="carousel slide" data-bs-ride="carousel">
+                                            <div id="carousel-${item.apartment.id}" class="carousel slide"
+                                                 data-bs-ride="carousel">
                                                 <div class="carousel-inner">
                                                     <#list photos as image>
                                                         <div class="carousel-item <#if image_index == 0>active</#if>">
@@ -147,11 +155,15 @@
                                                         </div>
                                                     </#list>
                                                 </div>
-                                                <button class="carousel-control-prev" type="button" data-bs-target="#carousel-${item.apartment.id}" data-bs-slide="prev">
-                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                <button class="carousel-control-prev" type="button"
+                                                        data-bs-target="#carousel-${item.apartment.id}"
+                                                        data-bs-slide="prev">
+                                                    <span class="carousel-control-prev-icon"></span>
                                                 </button>
-                                                <button class="carousel-control-next" type="button" data-bs-target="#carousel-${item.apartment.id}" data-bs-slide="next">
-                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                <button class="carousel-control-next" type="button"
+                                                        data-bs-target="#carousel-${item.apartment.id}"
+                                                        data-bs-slide="next">
+                                                    <span class="carousel-control-next-icon"></span>
                                                 </button>
                                             </div>
                                         </#if>
@@ -160,30 +172,35 @@
                                     <div class="col-md-6 d-flex flex-column justify-content-center">
                                         <div class="mb-3">
                                             <h3 class="mb-4">${item.apartment.name}</h3>
-                                            <p><b>Клас апартаментів:</b> ${item.apartment.apartmentClass.apartmentClass}</p>
-                                            <p><b>Місткість:</b> ${item.apartment.capacity} ос.</p>
-                                            <p><b>Ціна за ніч:</b> ${item.apartment.pricePerNight} грн.</p>
+                                            <p><b>Apartment class:</b> ${item.apartment.apartmentClass.apartmentClass}</p>
+                                            <p><b>Capacity:</b> ${item.apartment.capacity} persons</p>
+                                            <p><b>Price per night:</b> ${item.apartment.pricePerNight} UAH</p>
+
                                             <#assign itemTotalPrice = item.apartment.pricePerNight * nights[item_index]>
                                             <#assign itemPriceResult = cartPriceMap[item.apartment.id?string]!>
                                             <div class="mt-3 p-3 bg-light rounded">
                                                 <#if itemPriceResult?? && itemPriceResult.hasDiscount()>
-                                                    <p class="mb-1"><strong>Загальна вартість:</strong></p>
+                                                    <p class="mb-1"><strong>Total price:</strong></p>
                                                     <p class="mb-1">
-                                                        <s class="text-muted">${itemTotalPrice} грн</s>
-                                                        <span class="text-success fw-bold ms-2">${itemPriceResult.finalPrice} грн</span>
+                                                        <s class="text-muted">${itemTotalPrice} UAH</s>
+                                                        <span class="text-success fw-bold ms-2">
+                                                            ${itemPriceResult.finalPrice} UAH
+                                                        </span>
                                                     </p>
                                                     <p class="mb-0 text-success">
-                                                        <small>Знижка: ${itemPriceResult.discountPercentage}%</small>
+                                                        <small>Discount: ${itemPriceResult.discountPercentage}%</small>
                                                     </p>
                                                 <#else>
-                                                    <p class="mb-0"><strong>Загальна вартість:</strong> ${itemTotalPrice} грн</p>
+                                                    <p class="mb-0">
+                                                        <strong>Total price:</strong> ${itemTotalPrice} UAH
+                                                    </p>
                                                 </#if>
                                             </div>
                                         </div>
                                         <div>
-                                            <p><b>Опис класу:</b></p>
+                                            <p><b>Class description:</b></p>
                                             <p>${item.apartment.apartmentClass.classDescription}</p>
-                                            <p><b>Зручності:</b></p>
+                                            <p><b>Facilities:</b></p>
                                             <p>${item.apartment.apartmentClass.facilities}</p>
                                         </div>
                                     </div>
@@ -191,7 +208,10 @@
                             </div>
 
                             <div class="modal-footer d-flex justify-content-center">
-                                <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Закрити</button>
+                                <button type="button" class="btn btn-dark"
+                                        data-bs-dismiss="modal">
+                                    Close
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -200,23 +220,25 @@
 
             <div class="payment-section mx-auto mt-5" style="max-width: 400px;">
                 <form action="/booking" method="post">
-                    <h4 class="text-center mb-4">Оплата</h4>
+                    <h4 class="text-center mb-4">Payment</h4>
                     <div class="mb-3">
-                        <label for="payment" class="form-label">Оберіть спосіб оплати:</label>
-                        <select class="form-select" name="payment" id="payment" aria-label="Оплата">
+                        <label for="payment" class="form-label">Choose payment method:</label>
+                        <select class="form-select" name="payment" id="payment" aria-label="Payment">
                             <option value="1">Google Pay</option>
-                            <option value="2">Банківська карта</option>
-                            <option value="3">Готівкою при заселенні</option>
+                            <option value="2">Bank card</option>
+                            <option value="3">Cash on arrival</option>
                         </select>
                     </div>
                     <div class="d-flex justify-content-center mt-3">
-                        <button type="submit" class="btn btn-outline-success">Заплатити</button>
+                        <button type="submit" class="btn btn-outline-success">
+                            Pay
+                        </button>
                     </div>
                 </form>
             </div>
         <#else>
             <div class="alert alert-warning text-center mt-4" role="alert">
-                Ваш кошик порожній. Будь ласка, додайте апартаменти, перш ніж оформити бронювання.
+                Your cart is empty. Please add apartments before completing the booking.
             </div>
         </#if>
     </div>

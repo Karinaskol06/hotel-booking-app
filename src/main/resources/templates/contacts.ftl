@@ -1,5 +1,3 @@
-
-
 <#import "customer/template_customer.ftl" as p>
 
 <@p.pages>
@@ -30,8 +28,9 @@
             color: #E78200;
         }
     </style>
+
     <div class="container py-4">
-        <h3 class="text-center contact-header mb-2">Контакти</h3>
+        <h3 class="text-center contact-header mb-2">Contacts</h3>
 
         <div class="row justify-content-center mb-4">
             <div class="col-md-8">
@@ -42,23 +41,26 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card card-custom p-4">
-                    <h4 class="contact-subtitle mb-3">Зв'яжіться з нами за потреби</h4>
+                    <h4 class="contact-subtitle mb-3">Contact us if you need assistance</h4>
                     <ul class="list-unstyled contact-list">
-                        <li><i class="bi bi-telephone-fill contact-icon"></i>
-                            <strong>Телефон:</strong> +38 (099) 234-56-78
+                        <li>
+                            <i class="bi bi-telephone-fill contact-icon"></i>
+                            <strong>Phone:</strong> +38 (099) 234-56-78
                         </li>
-                        <li><i class="bi bi-envelope-fill contact-icon"></i>
-                            <strong>Електронна пошта:</strong> velourhotel@gmail.com
+                        <li>
+                            <i class="bi bi-envelope-fill contact-icon"></i>
+                            <strong>Email:</strong> velourhotel@gmail.com
                         </li>
-                        <li><i class="bi bi-chat-dots-fill contact-icon"></i>
-                            <strong>Месенджер:</strong> Telegram / Viber / WhatsApp
+                        <li>
+                            <i class="bi bi-chat-dots-fill contact-icon"></i>
+                            <strong>Messenger:</strong> Telegram / Viber / WhatsApp
                         </li>
                     </ul>
 
                     <hr class="my-4">
 
-                    <h5 class="contact-subtitle mb-2">Ми в соцмережах</h5>
-                    <p>Слідкуйте за нашими оновленнями, новинами та спеціальними пропозиціями:</p>
+                    <h5 class="contact-subtitle mb-2">Follow us on social media</h5>
+                    <p>Stay up to date with our news, updates, and special offers:</p>
                     <div class="social-icons">
                         <a href="https://facebook.com" target="_blank"><i class="bi bi-facebook"></i></a>
                         <a href="https://instagram.com" target="_blank"><i class="bi bi-instagram"></i></a>

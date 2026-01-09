@@ -2,7 +2,7 @@
 
 <@p.pages>
 
-    <h3 class="text-center mt-5 mb-4">Ваші бронювання</h3>
+    <h3 class="text-center mt-5 mb-4">Your bookings</h3>
 
     <div class="container mb-4">
         <#include "customer/buttonGroup.ftl">
@@ -14,14 +14,14 @@
                 <table class="table table-bordered align-middle">
                     <thead class="table-light text-center">
                     <tr>
-                        <th>Назва</th>
-                        <th>Зображення</th>
-                        <th>Дата заїзду</th>
-                        <th>Дата виїзду</th>
-                        <th>Ночей</th>
-                        <th>Ціна за ніч</th>
-                        <th>Загальна сума</th>
-                        <th>Видалити</th>
+                        <th>Name</th>
+                        <th>Image</th>
+                        <th>Check-in date</th>
+                        <th>Check-out date</th>
+                        <th>Nights</th>
+                        <th>Price per night</th>
+                        <th>Total amount</th>
+                        <th>Remove</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -43,7 +43,7 @@
                                            onchange="this.form.submit()">
                                 </form>
                             </td>
-                            <td class="align-middle">${item.apartment.pricePerNight} грн</td>
+                            <td class="align-middle">${item.apartment.pricePerNight} UAH</td>
 
                             <td class="align-middle">
                                 <#assign itemTotalPrice = item.apartment.pricePerNight * nights[item_index]>
@@ -51,19 +51,19 @@
 
                                 <#if itemPriceResult?? && itemPriceResult.hasDiscount()>
                                     <div>
-                                        <s class="text-muted d-block">${itemTotalPrice} грн</s>
-                                        <span class="text-success fw-bold d-block">${itemPriceResult.finalPrice} грн</span>
+                                        <s class="text-muted d-block">${itemTotalPrice} UAH</s>
+                                        <span class="text-success fw-bold d-block">${itemPriceResult.finalPrice} UAH</span>
                                         <small class="text-success d-block">-${itemPriceResult.discountPercentage}%</small>
                                     </div>
                                 <#else>
-                                    <div class="fw-bold">${itemTotalPrice} грн</div>
+                                    <div class="fw-bold">${itemTotalPrice} UAH</div>
                                 </#if>
                             </td>
 
                             <form method="post" action="/deleteItemFromCart">
                                 <td class="align-middle">
                                     <input type="hidden" name="id" value="${item.apartment.id}">
-                                    <button class="btn delete-btn">Видалити</button>
+                                    <button class="btn delete-btn">Remove</button>
                                 </td>
                             </form>
                         </tr>
@@ -73,34 +73,39 @@
             </div>
         <#else>
             <div class="alert text-center border-0" style="background-color: rgba(108,117,125,0.18); color: black;" role="alert">
-                Немає бронювань
+                No bookings found
             </div>
         </#if>
     </div>
+
     <hr>
+
     <div class="container mb-5 mt-5">
         <div class="row justify-content-center text-center">
             <div class="col-md-6">
-                <h5 class="mb-2">Загальна вартість: <b>${totalPrice} грн</b></h5>
-                <h5>Загальна кількість бронювань: <b>${sumEl} бронювання</b></h5>
+                <h5 class="mb-2">Total price: <b>${totalPrice} UAH</b></h5>
+                <h5>Total number of bookings: <b>${sumEl} booking(s)</b></h5>
             </div>
         </div>
     </div>
+
     <hr>
+
     <div class="container mb-5 mt-5">
         <div class="row row-cols-1 row-cols-md-2 g-4">
             <div class="col text-center">
-                <h5>Підтвердити бронювання апартаментів</h5>
+                <h5>Confirm apartment booking</h5>
                 <form method="get" action="/booking" class="d-inline">
-                    <button type="submit" class="btn btn-outline-success mt-2">Бронювання</button>
+                    <button type="submit" class="btn btn-outline-success mt-2">Proceed to booking</button>
                 </form>
             </div>
             <div class="col text-center">
-                <h5>Очистити кошик і повернутись до головної</h5>
+                <h5>Clear cart and return to homepage</h5>
                 <form method="post" action="/deleteAllFromCart" class="d-inline">
-                    <button type="submit" class="btn delete-btn mt-2">Очистити кошик</button>
+                    <button type="submit" class="btn delete-btn mt-2">Clear cart</button>
                 </form>
             </div>
         </div>
     </div>
+
 </@p.pages>

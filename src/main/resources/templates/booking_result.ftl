@@ -1,24 +1,24 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Результат бронювання</title>
+    <title>Booking Result</title>
 </head>
 <body>
-<h1>Інформація про пакет бронювання</h1>
+<h1>Booking Package Information</h1>
 
-<p><strong>Назва пакету:</strong> ${packageName}</p>
-<p><strong>Загальна вартість:</strong> ${totalPrice}</p>
-<p><strong>Загальна місткість:</strong> ${totalCapacity}</p>
-<p><strong>Доступність:</strong> <#if isAvailable>Так<#else>Ні</#if></p>
+<p><strong>Package name:</strong> ${packageName}</p>
+<p><strong>Total price:</strong> ${totalPrice}</p>
+<p><strong>Total capacity:</strong> ${totalCapacity}</p>
+<p><strong>Availability:</strong> <#if isAvailable>Yes<#else>No</#if></p>
 
-<h2>Деталі бронювання:</h2>
+<h2>Booking details:</h2>
 <ul>
     <#list details as detail>
         <li>${detail}</li>
     </#list>
 </ul>
 
-<p><a href="/composite-booking/form">Повернутися до форми бронювання</a></p>
+<p><a href="/composite-booking/form">Back to booking form</a></p>
 </body>
 </html>

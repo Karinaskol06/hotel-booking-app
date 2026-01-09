@@ -2,7 +2,7 @@
 <@p.pages>
 
     <div class="booking-wrapper">
-        <h2 class="booking-title">Інформація про бронювання</h2>
+        <h2 class="booking-title">Booking Information</h2>
 
         <#if apartmentsWithNights??>
             <#list apartmentsWithNights as item>
@@ -11,61 +11,61 @@
 
                 <div class="booking-card">
                     <div class="booking-info">
-                        <span>Апартаменти:</span> ${ahb.apartment.name}
+                        <span>Apartments:</span> ${ahb.apartment.name}
                     </div>
                     <div class="booking-info">
-                        <span>Ціна за ніч:</span> ${ahb.apartment.pricePerNight} грн
+                        <span>Price per night:</span> ${ahb.apartment.pricePerNight} UAH
                     </div>
                     <div class="booking-info">
-                        <span>Заселення:</span> ${ahb.checkIn}
+                        <span>Check-in:</span> ${ahb.checkIn}
                     </div>
                     <div class="booking-info">
-                        <span>Виселення:</span> ${ahb.checkOut}
+                        <span>Check-out:</span> ${ahb.checkOut}
                     </div>
                     <div class="booking-info">
-                        <span>Кількість ночей:</span> ${nights}
+                        <span>Number of nights:</span> ${nights}
                     </div>
                     <div class="booking-info">
-                        <span>Спосіб оплати: </span>${ahb.booking.payment.paymentMethod}
+                        <span>Payment method:</span> ${ahb.booking.payment.paymentMethod}
                     </div>
 
                     <div class="booking-info">
-                        <span>Статус бронювання: </span>
+                        <span>Booking status:</span>
                         <#switch ahb.booking.status?string>
-                            <#case "NOT_PROCESSED">Необроблене<#break>
-                            <#case "CONFIRMED">Підтверджене<#break>
-                            <#case "CANCELLED">Скасоване<#break>
+                            <#case "NOT_PROCESSED">Not processed<#break>
+                            <#case "CONFIRMED">Confirmed<#break>
+                            <#case "CANCELLED">Cancelled<#break>
                             <#default>${ahb.booking.status}
                         </#switch>
                     </div>
 
                     <div class="booking-info total">
-                        <span>Сума:</span> ${ahb.apartment.pricePerNight * nights} грн
+                        <span>Total:</span> ${ahb.apartment.pricePerNight * nights} UAH
                     </div>
                 </div>
             </#list>
 
             <div class="booking-card total-summary">
                 <div class="booking-info total">
-                    <span><strong>Загальна вартість:</strong></span>
-                    <span><strong>${totalValue} грн</strong></span>
+                    <span><strong>Total cost:</strong></span>
+                    <span><strong>${totalValue} UAH</strong></span>
                 </div>
             </div>
 
-            <h4 class="text-center">Інформація про користувача</h4>
+            <h4 class="text-center">User Information</h4>
             <#assign user = apartmentsWithNights[0].ahb.booking.client>
             <div class="booking-card">
                 <div class="booking-info">
-                    <span>Ім'я: </span> ${user.firstName}
+                    <span>First name:</span> ${user.firstName}
                 </div>
                 <div class="booking-info">
-                    <span>Прізвище: </span>${user.lastName}
+                    <span>Last name:</span> ${user.lastName}
                 </div>
                 <div class="booking-info">
-                    <span>Електронна пошта: </span>${user.email}
+                    <span>Email:</span> ${user.email}
                 </div>
                 <div class="booking-info">
-                    <span>Номер телефону: </span>${user.phone}
+                    <span>Phone number:</span> ${user.phone}
                 </div>
             </div>
         </#if>

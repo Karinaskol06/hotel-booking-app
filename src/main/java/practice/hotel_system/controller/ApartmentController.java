@@ -60,8 +60,7 @@ public class ApartmentController {
 
         if (checkin == null || checkout == null || checkin.isEmpty() || checkout.isEmpty()) {
             model.addAttribute("warningMessage",
-                    "Будь ласка, оберіть дати перебування для перегляду " +
-                            "доступних апартаментів.");
+                    "Please select your stay dates to view available apartments.");
             return "apartmentsByApartmentClass";
         }
 
@@ -71,13 +70,13 @@ public class ApartmentController {
 
         if (checkinLoc.isBefore(today) || checkoutLoc.isBefore(today)) {
             model.addAttribute("errorMessage",
-                    "Виберіть актуальні дати.");
+                    "Please select valid dates");
             return "apartmentsByApartmentClass";
         }
 
         if (checkinLoc.isAfter(checkoutLoc) || checkinLoc.isEqual(checkoutLoc)) {
             model.addAttribute("errorMessage",
-                    "Дата виїзду не може бути пізнішою або рівною даті заїзду.");
+                    "Check-out date must be later than the check-in date");
             return "apartmentsByApartmentClass";
         }
 
@@ -102,7 +101,7 @@ public class ApartmentController {
 
         if (apartmentsList.isEmpty()) {
             model.addAttribute("infoMessage",
-                    "Всі апартаменти даного класу заброньовані на вибрані дати.");
+                    "All apartments of this class are fully booked for the selected dates");
         }
 
         model.addAttribute("priceMap", priceMap);

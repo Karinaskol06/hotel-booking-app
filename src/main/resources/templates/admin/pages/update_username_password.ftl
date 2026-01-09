@@ -49,16 +49,16 @@
         }
     </style>
 
-    <h2 class="mb-5 text-center">Сторінка адміністрування користувачів</h2>
+    <h2 class="mb-5 text-center">User Administration Page</h2>
 
     <table>
         <thead>
         <tr>
             <th>ІD</th>
-            <th>Ім'я</th>
-            <th>Прізвище</th>
-            <th>Електронна пошта</th>
-            <th>Номер телефону</th>
+            <th>Name</th>
+            <th>Lastname</th>
+            <th>Email</th>
+            <th>Phone number</th>
             <th>Username</th>
             <th>Password</th>
             <th>Update</th>

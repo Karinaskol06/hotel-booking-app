@@ -75,7 +75,7 @@
     </style>
 
     <div class="container my-5">
-        <h2 class="text-center mb-4 booking-title">Адміністрування бронювань</h2>
+        <h2 class="text-center mb-4 booking-title">Booking Administration</h2>
 
         <#if bookings??>
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
@@ -83,27 +83,27 @@
                     <div class="col">
                         <div class="card booking-card h-100">
                             <div class="card-body">
-                                <h5 class="card-title">Бронювання #${booking.id}</h5>
+                                <h5 class="card-title">Booking #${booking.id}</h5>
                                 <ul class="list-unstyled mb-3">
-                                    <li><strong>Ім'я:</strong> ${booking.client.firstName}</li>
-                                    <li><strong>Прізвище:</strong> ${booking.client.lastName}</li>
-                                    <li><strong>Телефон:</strong> ${booking.client.phone}</li>
+                                    <li><strong>First Name:</strong> ${booking.client.firstName}</li>
+                                    <li><strong>Last Name:</strong> ${booking.client.lastName}</li>
+                                    <li><strong>Phone:</strong> ${booking.client.phone}</li>
                                     <li><strong>Email:</strong> ${booking.client.email}</li>
-                                    <li><strong>Створено:</strong> ${booking.dateCreated?string("yyyy:MM:dd")}</li>
-                                    <li><strong>Заїзд:</strong> ${booking.checkIn}</li>
-                                    <li><strong>Виїзд:</strong> ${booking.checkOut}</li>
-                                    <li><strong>Оплата:</strong> ${booking.payment.paymentMethod}</li>
+                                    <li><strong>Created:</strong> ${booking.dateCreated?string("yyyy:MM:dd")}</li>
+                                    <li><strong>Check-in:</strong> ${booking.checkIn}</li>
+                                    <li><strong>Check-out:</strong> ${booking.checkOut}</li>
+                                    <li><strong>Payment:</strong> ${booking.payment.paymentMethod}</li>
                                     <li>
-                                        <strong>Статус:</strong>
+                                        <strong>Status:</strong>
                                         <#switch booking.status?string>
-                                            <#case "NOT_PROCESSED">Необроблене<#break>
-                                            <#case "CONFIRMED">Підтверджене<#break>
-                                            <#case "CANCELLED">Скасоване<#break>
+                                            <#case "NOT_PROCESSED">Not processed<#break>
+                                            <#case "CONFIRMED">Confirmed<#break>
+                                            <#case "CANCELLED">Cancelled<#break>
                                             <#default>${booking.status}</#switch>
                                     </li>
 
                                     <form method="post" action="/manager/bookings/${booking.id}/status">
-                                        <label for="statusSelect">Змінити статус:</label>
+                                        <label for="statusSelect">Change status:</label>
                                         <select name="status" id="statusSelect" class="form-select mb-3">
                                             <#list statuses as s>
                                                 <option value="${s}"
@@ -113,13 +113,13 @@
                                             </#list>
                                         </select>
                                         <div style="text-align: center;">
-                                            <button type="submit" class="booking-save-btn">Зберегти</button>
+                                            <button type="submit" class="booking-save-btn">Save</button>
                                         </div>
                                     </form>
 
                                 </ul>
                                 <a href="/manager/bookings/${booking.id}" class="booking-btn w-100">
-                                    Переглянути деталі
+                                    View details
                                 </a>
                             </div>
                         </div>
@@ -127,7 +127,7 @@
                 </#list>
             </div>
         <#else>
-            <p class="text-center text-muted mt-5">Бронювань не знайдено.</p>
+            <p class="text-center text-muted mt-5">No bookings found.</p>
         </#if>
     </div>
 </@p.pages>
