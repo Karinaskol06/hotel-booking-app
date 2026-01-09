@@ -53,5 +53,14 @@ The project demonstrates:
 - Flexible discount and pricing logic
 - Clean separation of concerns
 
----
 
+## Home Page
+<img src="src/main/java/practice/hotel_system/docs/imagesUI/home.png" width="800">
+
+
+## Apartment Catalog (by Class)
+<img src="src/main/java/practice/hotel_system/docs/imagesUI/apartmentsByApartmentClass.png" width="800">
+
+
+## Booking Cart
+<img src="src/main/java/practice/hotel_system/docs/imagesUI/cart.png" width="800">
